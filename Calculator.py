@@ -1,11 +1,48 @@
 from tkinter import *
-from math import *
+import math
 
 def number_button(num):
     text1.insert(END,str(num))
 
 def clear():
     text1.delete(0,END)
+
+def clear2():
+    n=text1.get()
+    text1.delete(len(n)-1)
+
+def sqrt():
+    try:
+        s=int(text1.get())
+        f=math.sqrt(s)
+        clear()
+        text1.insert(0,f)
+    except Exception:
+        clear()
+        text1.insert(0,'Error!')
+   
+def factorial():
+    try:
+        s=int(text1.get())
+        f=1
+        for i in range(1,s+1):
+            f*=i
+        clear()
+        text1.insert(0,f)
+    except Exception:
+        clear()
+        text1.insert(0,'Error!')
+
+def equal():
+    s=text1.get()
+    try:
+        result=eval(s)
+        clear()
+        text1.insert(0,result)
+    except Exception:
+        clear()
+        text1.insert(0,'Error!')
+   
 
 root=Tk()
 root.title('Калькулятор')
@@ -25,7 +62,8 @@ b_b=Button(frame2, text='n!',width=3, bd=8,fg='turquoise',font='Arial 30',comman
 b_b.grid(row=1,column=1)
 b_ce=Button(frame2,text='CE',width=3,bd=8,fg='turquoise',font='Arial 30',command=clear)
 b_ce.grid(row=1,column=2)
-b_c=Button(frame2,text='C',width=3,bd=8,fg='turquoise',font='Arial 30',command=clear)
+b_c=Button(frame2,text='C',width=3,bd=8,fg='turquoise',font='Arial 30',command=clear2
+           )
 b_c.grid(row=1,column=3)
 b_p_m=Button(frame2,text='sqrt',width=3,bd=8,fg='turquoise',font='Arial 30',command=sqrt)
 b_p_m.grid(row=1,column=4)
@@ -65,7 +103,7 @@ b_3=Button(frame2,text='3',width=3,bd=8,fg='turquoise',font='Arial 30',command=l
 b_3.grid(row=4,column=3)
 b_mn=Button(frame2,text='-',width=3,bd=8,fg='turquoise',font='Arial 30',command=lambda:number_button('-'))
 b_mn.grid(row=4,column=4)
-b_eq = Button(frame2,text='=',width=3,height=3, bd=8, fg="turquoise",font='Arial 30',command=lambda:number_button('='))
+b_eq = Button(frame2,text='=',width=3,height=3, bd=8, fg="turquoise",font='Arial 30',command=equal)
 b_eq.grid(row=4,column=5, rowspan=2)
 
 #5 ryad
